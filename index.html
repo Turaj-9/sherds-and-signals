@@ -11,18 +11,17 @@
       background-color: #001f3f;
       color: #00ffcc;
       text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .scene {
       display: none;
       padding: 5% 10%;
       height: 100vh;
-      background: linear-gradient(180deg, #001f3f 0%, #003366 100%);
     }
     .scene.active {
       display: block;
-    }
-    h1, h2 {
-      color: #00ffcc;
     }
     .button {
       background-color: #0074D9;
@@ -34,11 +33,8 @@
       margin: 20px;
       cursor: pointer;
     }
-    .button:hover {
-      background-color: #00bfff;
-    }
     .choice {
-      background: #003366;
+      background: #003366cc;
       border: 2px solid #00ffcc;
       border-radius: 8px;
       margin: 15px auto;
@@ -46,107 +42,118 @@
       max-width: 600px;
       cursor: pointer;
       font-size: 1.1em;
-    }
-    .choice:hover {
-      background: #004c99;
+      color: white;
     }
     .feedback {
       margin-top: 20px;
       font-weight: bold;
     }
+    img.artifact {
+      max-width: 300px;
+      margin: 20px auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
-  <div id="start" class="scene active">
-    <h1>Welcome, Artifact Analyst!</h1>
-    <p>Your mission: Unearth the past by making the right analytical decisions.</p>
-    <button class="button" onclick="nextScene()">Begin</button>
-  </div>
+<audio autoplay loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
 
-  <div id="scene1" class="scene">
-    <h2>🪨 Field Observation</h2>
-    <p>Which soil layer is more likely to contain ceramic sherds?</p>
-    <div class="choice" onclick="handleChoice(1, 'scene1')">Sandy yellow silt</div>
-    <div class="choice" onclick="handleChoice(2, 'scene1')">Gravel with limestone chunks</div>
-    <div id="feedback1" class="feedback"></div>
-  </div>
+<div id="start" class="scene active" style="background-image: url('assets/start.jpg');">
+  <h1>Welcome, Artifact Analyst!</h1>
+  <p>Your mission begins in Egypt. Make the right choices to uncover ancient secrets.</p>
+  <button class="button" onclick="nextScene()">Begin</button>
+</div>
 
-  <div id="scene2" class="scene">
-    <h2>🧹 Excavation Techniques</h2>
-    <p>What is the safest way to excavate fragile ceramics?</p>
-    <div class="choice" onclick="handleChoice(1, 'scene2')">Pickaxe the area quickly</div>
-    <div class="choice" onclick="handleChoice(2, 'scene2')">Use trowels and brushes gradually</div>
-    <div class="choice" onclick="handleChoice(3, 'scene2')">Spray it with water then remove</div>
-    <div id="feedback2" class="feedback"></div>
-  </div>
+<div id="scene1" class="scene" style="background-image: url('assets/digsite.jpg');">
+  <h2>🪨 Field Observation</h2>
+  <p>Which soil layer is more likely to contain ceramic sherds?</p>
+  <img src="assets/artifact1.jpg" class="artifact" />
+  <div class="choice" onclick="handleChoice(1, 'scene1')">Sandy yellow silt</div>
+  <div class="choice" onclick="handleChoice(2, 'scene1')">Gravel with limestone chunks</div>
+  <div id="feedback1" class="feedback"></div>
+</div>
 
-  <div id="scene3" class="scene">
-    <h2>🔬 Laboratory Analysis</h2>
-    <p>Which tool provides compositional data on ceramic microstructure?</p>
-    <div class="choice" onclick="handleChoice(1, 'scene3')">Light microscope</div>
-    <div class="choice" onclick="handleChoice(2, 'scene3')">SEM</div>
-    <div class="choice" onclick="handleChoice(3, 'scene3')">Calipers</div>
-    <div class="choice" onclick="handleChoice(4, 'scene3')">CT Scanner</div>
-    <div class="choice" onclick="handleChoice(5, 'scene3')">Brush and tray</div>
-    <div id="feedback3" class="feedback"></div>
-  </div>
+<div id="scene2" class="scene" style="background-image: url('assets/excavation.jpg');">
+  <h2>🧹 Excavation Techniques</h2>
+  <p>What is the safest way to excavate fragile ceramics?</p>
+  <img src="assets/artifact2.jpg" class="artifact" />
+  <div class="choice" onclick="handleChoice(1, 'scene2')">Pickaxe the area quickly</div>
+  <div class="choice" onclick="handleChoice(2, 'scene2')">Use trowels and brushes gradually</div>
+  <div class="choice" onclick="handleChoice(3, 'scene2')">Spray it with water then remove</div>
+  <div id="feedback2" class="feedback"></div>
+</div>
 
-  <div id="scene4" class="scene">
-    <h2>📜 Final Interpretation</h2>
-    <p>Based on all evidence, what is the most plausible function of this vessel?</p>
-    <div class="choice" onclick="handleChoice(1, 'scene4')">Weapon container</div>
-    <div class="choice" onclick="handleChoice(2, 'scene4')">Funerary Urn</div>
-    <div class="choice" onclick="handleChoice(3, 'scene4')">Ritual Chalice</div>
-    <div class="choice" onclick="handleChoice(4, 'scene4')">Toy container</div>
-    <div class="choice" onclick="handleChoice(5, 'scene4')">Food Storage Jar</div>
-    <div class="choice" onclick="handleChoice(6, 'scene4')">Oil lamp</div>
-    <div class="choice" onclick="handleChoice(7, 'scene4')">Pigment mixing bowl</div>
-    <div id="feedback4" class="feedback"></div>
-  </div>
+<div id="scene3" class="scene" style="background-image: url('assets/lab.jpg');">
+  <h2>🔬 Laboratory Analysis</h2>
+  <p>Which tool provides compositional data on ceramic microstructure?</p>
+  <img src="assets/artifact3.jpg" class="artifact" />
+  <div class="choice" onclick="handleChoice(1, 'scene3')">Light microscope</div>
+  <div class="choice" onclick="handleChoice(2, 'scene3')">SEM</div>
+  <div class="choice" onclick="handleChoice(3, 'scene3')">Calipers</div>
+  <div class="choice" onclick="handleChoice(4, 'scene3')">CT Scanner</div>
+  <div class="choice" onclick="handleChoice(5, 'scene3')">Brush and tray</div>
+  <div id="feedback3" class="feedback"></div>
+</div>
 
-  <div id="victory" class="scene">
-    <h1>🎉 Congratulations!</h1>
-    <p>You’ve successfully uncovered the story behind the artifact!</p>
-    <button class="button" onclick="location.reload()">Play Again</button>
-  </div>
+<div id="scene4" class="scene" style="background-image: url('assets/interpretation.jpg');">
+  <h2>📜 Final Interpretation</h2>
+  <p>Based on all evidence, what is the most plausible function of this vessel?</p>
+  <img src="assets/artifact4.jpg" class="artifact" />
+  <div class="choice" onclick="handleChoice(1, 'scene4')">Weapon container</div>
+  <div class="choice" onclick="handleChoice(2, 'scene4')">Funerary Urn</div>
+  <div class="choice" onclick="handleChoice(3, 'scene4')">Ritual Chalice</div>
+  <div class="choice" onclick="handleChoice(4, 'scene4')">Toy container</div>
+  <div class="choice" onclick="handleChoice(5, 'scene4')">Food Storage Jar</div>
+  <div class="choice" onclick="handleChoice(6, 'scene4')">Oil lamp</div>
+  <div class="choice" onclick="handleChoice(7, 'scene4')">Pigment mixing bowl</div>
+  <div id="feedback4" class="feedback"></div>
+</div>
 
-  <script>
-    let attempts = {scene1: 0, scene2: 0, scene3: 0, scene4: 0};
-    const correctAnswers = {
-      scene1: 2,
-      scene2: 3,
-      scene3: 2,
-      scene4: 3
-    };
+<div id="victory" class="scene" style="background-image: url('assets/congrats.jpg');">
+  <h1>🎉 Congratulations!</h1>
+  <p>You’ve successfully uncovered the story behind the artifact!</p>
+  <button class="button" onclick="location.reload()">Play Again</button>
+</div>
 
-    function nextScene() {
-      document.getElementById("start").classList.remove("active");
-      document.getElementById("scene1").classList.add("active");
+<script>
+  let attempts = {scene1: 0, scene2: 0, scene3: 0, scene4: 0};
+  const correctAnswers = {
+    scene1: 2,
+    scene2: 3,
+    scene3: 2,
+    scene4: 3
+  };
+
+  function nextScene() {
+    document.getElementById("start").classList.remove("active");
+    document.getElementById("scene1").classList.add("active");
+  }
+
+  function handleChoice(choice, scene) {
+    const correct = correctAnswers[scene];
+    const feedback = document.getElementById(`feedback${scene.slice(-1)}`);
+    attempts[scene] += 1;
+
+    if (choice === correct) {
+      feedback.innerHTML = "✅ Correct! Proceeding...";
+      setTimeout(() => {
+        document.getElementById(scene).classList.remove("active");
+        if (scene === "scene4") {
+          document.getElementById("victory").classList.add("active");
+        } else {
+          const next = "scene" + (parseInt(scene.slice(-1)) + 1);
+          document.getElementById(next).classList.add("active");
+        }
+      }, 1000);
+    } else if (attempts[scene] === 1) {
+      feedback.innerHTML = "❌ Try again. (Hint: Think critically about materials and context.)";
+    } else {
+      feedback.innerHTML = "❌ Incorrect twice. Restarting...";
+      setTimeout(() => location.reload(), 1500);
     }
-
-    function handleChoice(choice, scene) {
-      const correct = correctAnswers[scene];
-      const feedback = document.getElementById(`feedback${scene.slice(-1)}`);
-      attempts[scene] += 1;
-
-      if (choice === correct) {
-        feedback.innerHTML = "✅ Correct! Proceeding...";
-        setTimeout(() => {
-          document.getElementById(scene).classList.remove("active");
-          if (scene === "scene4") {
-            document.getElementById("victory").classList.add("active");
-          } else {
-            const next = "scene" + (parseInt(scene.slice(-1)) + 1);
-            document.getElementById(next).classList.add("active");
-          }
-        }, 1000);
-      } else if (attempts[scene] === 1) {
-        feedback.innerHTML = "❌ Try again. (Hint: Think critically about materials and context.)";
-      } else {
-        feedback.innerHTML = "❌ Incorrect twice. Restarting...";
-        setTimeout(() => location.reload(), 1500);
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
